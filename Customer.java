@@ -1,0 +1,79 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Customer {
+    private String name;
+    private List<Rental> rentals = new ArrayList<>(); //Renaming & Generic Type
+
+    public Customer(String name) {
+        this.name = name;
+    }
+
+    public void addRental(Rental rental) { // Renaming: arg -> rental
+        rentals.add(rental);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    // Requirement: Text Format Method
+    public String statement() {
+        String result = "Rental Record for " + getName() + "\n";
+        for (Rental rental : rentals) {
+            result += "\t" + rental.getMovie().getTitle() + "\t" + 
+                      String.valueOf(rental.getRentPrice()) + "\n";
+        }
+        result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
+        result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) +
+                  " frequent renter points";
+        return result;
+    }
+
+    // Requirement: XML Format Method
+    public String xmlStatement() {
+
+        String result = "<customer>\n";
+
+        result += "  <name>" + getName() + "</name>\n";
+
+        for (Rental rental : rentals) {
+            result += "  <rental>\n";
+            result += "    <movie>" + rental.getMovie().getTitle() + "</movie>\n";
+            result += "    <daysRented>" + rental.getDaysRented() + "</daysRented>\n";
+            result += "    <charge>" + rental.getRentPrice() + "</charge>\n";
+            result += "  </rental>\n";
+        }
+
+        result += "  <totalAmount>" + getTotalCharge() + "</totalAmount>\n";
+        result += "  <frequentRenterPoints>"
+                + getTotalFrequentRenterPoints()
+                + "</frequentRenterPoints>\n";
+
+        result += "</customer>";
+
+        return result;
+    }
+
+    //Sums up all charges from individual rentals
+    private double getTotalCharge() {
+        double result = 0;
+
+        for (Rental rental : rentals) {
+            result += rental.getRentPrice(); //Delegate to Rental's getRentPrice() which uses the assigned Price Strategy
+        }
+
+        return result;
+    }
+
+    //Sums up all frequent renter points from individual rentals
+    private int getTotalFrequentRenterPoints() {
+        int result = 0;
+
+        for (Rental rental : rentals) {
+            result += rental.getFRP(); //Delegate to Rental's getFRP() which uses the assigned FRP Strategy
+        }
+
+        return result;
+    }
+}
