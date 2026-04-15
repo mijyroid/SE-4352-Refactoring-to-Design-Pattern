@@ -1,18 +1,31 @@
 public class Main {
     public static void main(String[] args) {
-        // Create some movies
-        Movie regularMovie = new Movie("The Matrix", Movie.REGULAR);
-        Movie childrensMovie = new Movie("Frozen", Movie.CHILDRENS);
-        Movie newReleaseMovie = new Movie("Oppenheimer", Movie.NEW_RELEASE);
-
+       
+        // Create a rental with Regular movie and apply a 50% off coupon
+        Rental r = new Rental(
+            new Movie("The Matrix", Movie.REGULAR), 
+            8, 
+            new RegularPriceStrategy(), 
+            new RegularFRPStrategy()
+        );
+        
         Customer customer = new Customer("Hannah Roberts");
+        r.setPriceStrategy(new RegularPriceStrategy());
+        r. getRentPrice(); // Calculate price without coupon
 
-        // Requirement: Add rentals with appropriate strategies
-        customer.addRental(new Rental(regularMovie, 3, new RegularPriceStrategy(), new RegularFRPStrategy()));
-        customer.addRental(new Rental(childrensMovie, 4, new ChildrensPriceStrategy(), new RegularFRPStrategy()));
-        customer.addRental(new Rental(newReleaseMovie, 2, new NewReleasePriceStrategy(), new NewReleaseFRPStrategy()));
+        // Apply a 50% off coupon
+        r.setPriceStrategy(new FiftyPercentOffCoupon(new RegularPriceStrategy()));
+        r. getRentPrice(); // Calculate price with 50% off coupon
+        
+        DiscountedRentalPrice finalPriceLogic = new OneDollarOffCoupon(
+                                                    new FiftyPercentOffCoupon(
+                                                        new RegularPriceStrategy()));
+        
+        r.setPriceStrategy(finalPriceLogic);
+        
+        customer.addRental(r);
 
-        System.out.println("--- Text Statement ---");
+        System.out.println("--- Text Statement with Coupons ---");
         System.out.println(customer.statement());
 
         System.out.println("\n--- XML Statement ---");
