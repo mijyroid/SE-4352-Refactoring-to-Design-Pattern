@@ -1,11 +1,11 @@
 public abstract class CouponDecorator extends DiscountedRentalPrice {
-    protected DiscountedRentalPrice drps; // The wrapped strategy or coupon
+    protected DiscountedRentalPrice drps; // The wrapped DiscountedRentalPrice object
 
     public CouponDecorator(DiscountedRentalPrice drps) {
-        this.drps = drps;
+        this.drps = drps; // Initialize the wrapped object
     }
 
-    // Helper method to get the price from the wrapped object
+    // Method to get the base price from the wrapped DiscountedRentalPrice object
     public double getBasePrice(Rental rental) {
         return drps.getRentalPrice(rental);
     }

@@ -1,4 +1,4 @@
-// Strategy for Children's Movies
+// Children price strategy: $1.5 for the first 3 days, and $1.5 per day thereafter.
 class ChildrensPriceStrategy extends DiscountedRentalPrice {
     @Override
     public double getRentalPrice(Rental rental) {

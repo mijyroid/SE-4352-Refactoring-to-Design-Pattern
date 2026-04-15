@@ -1,3 +1,4 @@
+// This class represents a coupon that applies a 50% discount to the rental price
 public class FiftyPercentOffCoupon extends CouponDecorator {
     public FiftyPercentOffCoupon(DiscountedRentalPrice drps) {
         super(drps);
@@ -5,7 +6,8 @@ public class FiftyPercentOffCoupon extends CouponDecorator {
 
     @Override
     public double getRentalPrice(Rental rental) {
-        // Apply 50% discount to whatever the inner strategy returns
+        
+        // Get the base price from the wrapped DiscountedRentalPrice object and apply a 50% discount
         return getBasePrice(rental) * 0.5; 
     }
 }

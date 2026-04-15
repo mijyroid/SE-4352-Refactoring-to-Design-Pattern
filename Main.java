@@ -17,13 +17,13 @@ public class Main {
         r.setPriceStrategy(new FiftyPercentOffCoupon(new RegularPriceStrategy()));
         r. getRentPrice(); // Calculate price with 50% off coupon
         
-        DiscountedRentalPrice finalPriceLogic = new OneDollarOffCoupon(
-                                                    new FiftyPercentOffCoupon(
-                                                        new RegularPriceStrategy()));
+        DiscountedRentalPrice finalPriceLogic = new OneDollarOffCoupon( new FiftyPercentOffCoupon( 
+            new RegularPriceStrategy()));
         
+        // Set the final price strategy with both coupons applied
         r.setPriceStrategy(finalPriceLogic);
         
-        customer.addRental(r);
+        customer.addRental(r); // Add the rental to the customer
 
         System.out.println("--- Text Statement with Coupons ---");
         System.out.println(customer.statement());

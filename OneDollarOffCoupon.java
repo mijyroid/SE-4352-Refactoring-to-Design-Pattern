@@ -7,6 +7,7 @@ public class OneDollarOffCoupon extends CouponDecorator {
         super(drps);
     }
 
+    // Override the getRentalPrice method to apply the $1 discount if the price is above the minimum threshold
     @Override
     public double getRentalPrice(Rental rental) {
         double price = getBasePrice(rental);
