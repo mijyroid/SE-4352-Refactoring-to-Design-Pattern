@@ -1,9 +1,5 @@
-public interface PriceStrategy {
-    double getRentalPrice(Rental rental); // Takes the whole Rental object as a parameter
-}
-
-//Strategy for Regular Movies: $2 for 2 days, $1.50 per day after
-class RegularPriceStrategy implements PriceStrategy {
+class RegularPriceStrategy extends DiscountedRentalPrice {
+    @Override
     public double getRentalPrice(Rental rental) {
         double result = 2;
         if (rental.getDaysRented() > 2) {
@@ -13,8 +9,9 @@ class RegularPriceStrategy implements PriceStrategy {
     }
 }
 
-//Strategy for Children's Movies: $1.50 for 3 days, $1.50 per day after
-class ChildrensPriceStrategy implements PriceStrategy {
+// Strategy for Children's Movies
+class ChildrensPriceStrategy extends DiscountedRentalPrice {
+    @Override
     public double getRentalPrice(Rental rental) {
         double result = 1.5;
         if (rental.getDaysRented() > 3) {
@@ -24,8 +21,9 @@ class ChildrensPriceStrategy implements PriceStrategy {
     }
 }
 
-//Strategy for New Releases: $3 per day
-class NewReleasePriceStrategy implements PriceStrategy {
+// Strategy for New Releases
+class NewReleasePriceStrategy extends DiscountedRentalPrice {
+    @Override
     public double getRentalPrice(Rental rental) {
         return rental.getDaysRented() * 3.0;
     }

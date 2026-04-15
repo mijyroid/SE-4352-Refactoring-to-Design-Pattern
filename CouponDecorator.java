@@ -1,14 +1,12 @@
-public abstract class CouponDecorator implements PriceStrategy {
-    protected PriceStrategy decoratedPriceStrategy;
+public abstract class CouponDecorator extends DiscountedRentalPrice {
+    protected DiscountedRentalPrice drps; // The wrapped strategy or coupon
 
-    public CouponDecorator(PriceStrategy decoratedPriceStrategy) {
-        this.decoratedPriceStrategy = decoratedPriceStrategy;
+    public CouponDecorator(DiscountedRentalPrice drps) {
+        this.drps = drps;
     }
 
-    public double getRentalPrice(Rental rental) {
-        return decoratedPriceStrategy.getRentalPrice(rental);
+    // Helper method to get the price from the wrapped object
+    public double getBasePrice(Rental rental) {
+        return drps.getRentalPrice(rental);
     }
 }
-
-
-
