@@ -1,3 +1,4 @@
+// ChildrensPriceStrategy class that calculates the price for children's movies
 class ChildrensPriceStrategy extends RentalPriceStrategy {
     @Override
     public double getPrice(Rental rental) {

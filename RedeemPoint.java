@@ -1,3 +1,4 @@
+// RedeemPoint class that extends Coupon and provides a free rental based on frequent renter points
 public class RedeemPoint extends Coupon {
     
     public RedeemPoint(DiscountPriceStrategy drps) {

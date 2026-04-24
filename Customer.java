@@ -3,13 +3,14 @@ import java.util.List;
 
 public class Customer {
     private String name;
-    private List<Rental> rentals = new ArrayList<>(); //Renaming & Generic Type
+    private List<Rental> rentals = new ArrayList<>();
 
     public Customer(String name) {
         this.name = name;
     }
 
-    public void addRental(Rental rental) { // Renaming: arg -> rental
+    // Adds a rental to the customer's list of rentals
+    public void addRental(Rental rental) {
         rentals.add(rental);
     }
 
@@ -55,23 +56,19 @@ public class Customer {
         return result;
     }
 
-    //Sums up all charges from individual rentals
+    // Sums up all rental charges using the assigned Transaction Strategy
     private double getTotalCharge() {
         DiscountTransactionStrategy transaction = new Cart();
-
         transaction = new FiveDollarDiscount(transaction);
-
         return transaction.getPrice(this.rentals);
     }
 
-    //Sums up all frequent renter points from individual rentals
+    // Sums up all frequent renter points using the assigned Transaction Point Strategy
     private int getTotalFrequentRenterPoints() {
         int result = 0;
-
         for (Rental rental : rentals) {
-            result += rental.getFRP(); //Delegate to Rental's getFRP() which uses the assigned FRP Strategy
+            result += rental.getFRP();
         }
-
         return result;
     }
 }

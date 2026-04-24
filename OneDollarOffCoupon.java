@@ -1,3 +1,5 @@
+/*OneDollarOffCoupon class that applies a $1 discount 
+to the price calculated by the wrapped DiscountPriceStrategy*/
 public class OneDollarOffCoupon extends Coupon {
     public OneDollarOffCoupon(DiscountPriceStrategy drps) {
         super(drps);

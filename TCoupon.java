@@ -1,5 +1,6 @@
 import java.util.List;
 
+// TCoupon class that serves as a base for specific coupon types in transaction strategies
 public abstract class TCoupon extends DiscountTransactionStrategy {
     protected DiscountTransactionStrategy wrappedStrategy;
 

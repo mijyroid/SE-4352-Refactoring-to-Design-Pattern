@@ -1,3 +1,4 @@
+// RegularPriceStrategy class that calculates the price for regular movies
 class RegularPriceStrategy extends RentalPriceStrategy {
     @Override
     public double getPrice(Rental rental) {

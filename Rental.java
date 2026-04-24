@@ -1,3 +1,4 @@
+/* Rental class that represents a rental transaction */
 public class Rental {
     private Movie movie;
     private int daysRented;
@@ -11,6 +12,7 @@ public class Rental {
         this.frpStrategy = frps;
     }
 
+    // It calls the price strategy's getPrice() method, passing itself as an argument
     public double getRentPrice() {
         return priceStrategy.getPrice(this);
     }
