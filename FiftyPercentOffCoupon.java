@@ -1,14 +1,12 @@
-// This class represents a coupon that applies a 50% discount to the rental price
-public class FiftyPercentOffCoupon extends CouponDecorator {
-    public FiftyPercentOffCoupon(DiscountedRentalPrice drps) {
+public class FiftyPercentOffCoupon extends Coupon {
+    public FiftyPercentOffCoupon(DiscountPriceStrategy drps) {
         super(drps);
     }
 
     @Override
-    public double getRentalPrice(Rental rental) {
-        
-        // Get the base price from the wrapped DiscountedRentalPrice object and apply a 50% discount
-        return getBasePrice(rental) * 0.5; 
+    public double getPrice(Rental rental) {
+        double p = super.getPrice(rental);
+        return p * 0.5;
     }
 }
 

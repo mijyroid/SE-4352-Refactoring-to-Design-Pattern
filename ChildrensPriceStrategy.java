@@ -1,7 +1,6 @@
-// Children price strategy: $1.5 for the first 3 days, and $1.5 per day thereafter.
-class ChildrensPriceStrategy extends DiscountedRentalPrice {
+class ChildrensPriceStrategy extends RentalPriceStrategy {
     @Override
-    public double getRentalPrice(Rental rental) {
+    public double getPrice(Rental rental) {
         double result = 1.5;
         if (rental.getDaysRented() > 3) {
             result += (rental.getDaysRented() - 3) * 1.5;
