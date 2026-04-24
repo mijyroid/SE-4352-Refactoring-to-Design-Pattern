@@ -1,22 +1,16 @@
-// A coupon for $1 off the rental price
-public class OneDollarOffCoupon extends CouponDecorator {
-    private static final double MIN_PRICE = 5.0;
-    private static final double DISCOUNT  = 1.0;
-
-    public OneDollarOffCoupon(DiscountedRentalPrice drps) {
+/*OneDollarOffCoupon class that applies a $1 discount 
+to the price calculated by the wrapped DiscountPriceStrategy*/
+public class OneDollarOffCoupon extends Coupon {
+    public OneDollarOffCoupon(DiscountPriceStrategy drps) {
         super(drps);
     }
 
-    // Override the getRentalPrice method to apply the $1 discount if the price is above the minimum threshold
     @Override
-    public double getRentalPrice(Rental rental) {
-        double price = getBasePrice(rental);
-        
-        // Only apply the $1 discount if the price is above the minimum threshold
-        if (price > MIN_PRICE) {
-            return price - DISCOUNT;
+    public double getPrice(Rental rental) {
+        double p = super.getPrice(rental);
+        if (p > 5.0) {
+            return p - 1.0;
         }
-        return price;
+        return p;
     }
 }
-

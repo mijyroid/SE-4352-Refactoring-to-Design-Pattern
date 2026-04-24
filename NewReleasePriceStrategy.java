@@ -1,7 +1,7 @@
-// Strategy for New Releases
-class NewReleasePriceStrategy extends DiscountedRentalPrice {
+// NewReleasePriceStrategy class that calculates the price for new release movies
+class NewReleasePriceStrategy extends RentalPriceStrategy {
     @Override
-    public double getRentalPrice(Rental rental) {
-        return rental.getDaysRented() * 3.0; // New Releases cost $3 per day
+    public double getPrice(Rental rental) {
+        return rental.getDaysRented() * 3.0;
     }
 }
