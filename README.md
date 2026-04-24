@@ -27,7 +27,7 @@ Following a custom architectural whiteboard design, the system features a separa
 *   **XML & Text Output**: Decoupled data calculation from formatting, allowing the system to generate both standard text statements and structured XML outputs.
 
 ## Project Structure
-*   **Individual Logic**: `DiscountPriceStrategy` → `PriceStrategy` → [Movie Type Strategies] & `Coupon` → [Coupon Decorators]
+*   **Individual Logic**: `DiscountPriceStrategy` → `RentalPriceStrategy` → [Movie Type Strategies] & `Coupon` → [Coupon Decorators]
 *   **Transaction Logic**: `DiscountTransactionStrategy` → `TransactionPointStrategy` → `Cart` & `TCoupon` → [Bulk Discounts]
 
 ## How to Run
