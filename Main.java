@@ -32,6 +32,11 @@ public class Main {
         // Print the final statement for the customer
         System.out.println("--- Final Transaction Receipt Statement ---");
         System.out.println(customer.statement());
+        System.out.println();
+        
+        // Print the final final statement for the customer in XML format
+        System.out.println("--- Final Transaction Receipt Statement in XML Format ---");
+        System.out.println(customer.xmlStatement());
 
     }
 }
