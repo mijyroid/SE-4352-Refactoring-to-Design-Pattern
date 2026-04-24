@@ -1,34 +1,40 @@
 public class Main {
     public static void main(String[] args) {
-       
-        // Create a rental with Regular movie and apply a 50% off coupon
-        Rental r = new Rental(
+        Customer customer = new Customer("Hannah Roberts");
+        
+        // 1. Requirement A: Redeem 10 points for a free movie
+        // Use the RedeemPoint decorator
+        Rental freeRental = new Rental(
             new Movie("The Matrix", Movie.REGULAR), 
             8, 
-            new RegularPriceStrategy(), 
+            new RedeemPoint(new RegularPriceStrategy()), 
             new RegularFRPStrategy()
         );
-        
-        Customer customer = new Customer("Hannah Roberts");
-        r.setPriceStrategy(new RegularPriceStrategy());
-        r. getRentPrice(); // Calculate price without coupon
+        customer.addRental(freeRental);
 
-        // Apply a 50% off coupon
-        r.setPriceStrategy(new FiftyPercentOffCoupon(new RegularPriceStrategy()));
-        r. getRentPrice(); // Calculate price with 50% off coupon
+        // 2. Add 4 more rentals to reach a total of 5 rentals
+        // Requirement B: $5 off for a transaction of 5 or more rentals
+        customer.addRental(new Rental(
+            new Movie("Inception", Movie.REGULAR), 2, new RegularPriceStrategy(), new RegularFRPStrategy()));
         
-        DiscountedRentalPrice finalPriceLogic = new OneDollarOffCoupon( new FiftyPercentOffCoupon( 
-            new RegularPriceStrategy()));
+        customer.addRental(new Rental(
+            new Movie("Frozen", Movie.CHILDRENS), 4, new ChildrensPriceStrategy(), new RegularFRPStrategy()));
         
-        // Set the final price strategy with both coupons applied
-        r.setPriceStrategy(finalPriceLogic);
+        customer.addRental(new Rental(
+            new Movie("Avatar 2", Movie.NEW_RELEASE), 3, new NewReleasePriceStrategy(), new NewReleaseFRPStrategy()));
         
-        customer.addRental(r); // Add the rental to the customer
+        // Let's apply a 50% coupon to this specific rental too
+        customer.addRental(new Rental(
+            new Movie("The Godfather", Movie.REGULAR), 
+            5, 
+            new FiftyPercentOffCoupon(new RegularPriceStrategy()), 
+            new RegularFRPStrategy()));
 
-        System.out.println("--- Text Statement with Coupons ---");
+        // Print the statement
+        // This will show one free movie (RedeemPoint)
+        // AND the final total will have $5 subtracted (FiveDollarDiscount)
+        System.out.println("--- Final Statement ---");
         System.out.println(customer.statement());
 
-        System.out.println("\n--- XML Statement ---");
-        System.out.println(customer.xmlStatement());
     }
 }

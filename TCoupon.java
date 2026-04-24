@@ -1,3 +1,5 @@
+import java.util.List;
+
 public abstract class TCoupon extends DiscountTransactionStrategy {
     protected DiscountTransactionStrategy wrappedStrategy;
 

@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Cart extends TransactionPointStrategy {
     @Override
     public double getPrice(List<Rental> rentals) {

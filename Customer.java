@@ -57,13 +57,11 @@ public class Customer {
 
     //Sums up all charges from individual rentals
     private double getTotalCharge() {
-        double result = 0;
+        DiscountTransactionStrategy transaction = new Cart();
 
-        for (Rental rental : rentals) {
-            result += rental.getRentPrice(); //Delegate to Rental's getRentPrice() which uses the assigned Price Strategy
-        }
+        transaction = new FiveDollarDiscount(transaction);
 
-        return result;
+        return transaction.getPrice(this.rentals);
     }
 
     //Sums up all frequent renter points from individual rentals

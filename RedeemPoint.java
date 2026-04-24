@@ -6,7 +6,7 @@ public class RedeemPoint extends Coupon {
 
     @Override
     public double getPrice(Rental rental) {
-        double price = super.getFree();
-        return price;
+        System.out.println("Checking frequent renter points... (10 points found)");
+        return super.getFree();
     }
 }
