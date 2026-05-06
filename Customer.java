@@ -63,12 +63,9 @@ public class Customer {
         return transaction.getPrice(this.rentals);
     }
 
-    // Sums up all frequent renter points using the assigned Transaction Point Strategy
+   //Implementation (b) - +20 FRP if transaction has >= 4 rentals
     private int getTotalFrequentRenterPoints() {
-        int result = 0;
-        for (Rental rental : rentals) {
-            result += rental.getFRP();
-        }
-        return result;
+        TwentyExtraPointCoupon bonus = new TwentyExtraPointCoupon(new Cart());
+        return bonus.getFRP(this.rentals);
     }
 }

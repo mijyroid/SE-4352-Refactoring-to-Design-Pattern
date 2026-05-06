@@ -1,7 +1,7 @@
-// RegularFRPStrategy class that implements the FRPStrategy interface for regular movies
-class RegularFRPStrategy implements FRPStrategy {
+public class RegularFRPStrategy extends FRPStrategy {
+
+    @Override
     public int getFRP(Rental rental) {
         return 1;
     }
 }
-

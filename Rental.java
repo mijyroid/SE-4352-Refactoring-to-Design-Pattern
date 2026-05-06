@@ -3,9 +3,9 @@ public class Rental {
     private Movie movie;
     private int daysRented;
     private DiscountPriceStrategy priceStrategy;
-    private FRPStrategy frpStrategy; 
+    private ExtraPointStrategy frpStrategy; 
 
-    public Rental(Movie movie, int daysRented, DiscountPriceStrategy ps, FRPStrategy frps) {
+    public Rental(Movie movie, int daysRented, DiscountPriceStrategy ps, ExtraPointStrategy frps) {
         this.movie = movie;
         this.daysRented = daysRented;
         this.priceStrategy = ps;
