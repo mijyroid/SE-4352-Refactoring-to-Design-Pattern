@@ -65,7 +65,8 @@ public class Customer {
 
    //Implementation (b) - +20 FRP if transaction has >= 4 rentals
     private int getTotalFrequentRenterPoints() {
-        TwentyExtraPointCoupon bonus = new TwentyExtraPointCoupon(new Cart());
+        Transaction basePoints = new Transaction(new Cart());
+        TwentyExtraPointCoupon bonus = new TwentyExtraPointCoupon(basePoints);
         return bonus.getFRP(this.rentals);
     }
 }
