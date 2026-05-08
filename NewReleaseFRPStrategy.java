@@ -1,3 +1,4 @@
+// Concrete FRP Strategy for New Release movies
 public class NewReleaseFRPStrategy extends FRPStrategy {
 
     @Override

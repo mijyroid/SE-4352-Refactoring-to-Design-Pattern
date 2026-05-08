@@ -14,6 +14,7 @@ public class Customer {
         rentals.add(rental);
     }
 
+    // Returns the customer's name
     public String getName() {
         return name;
     }
@@ -56,14 +57,12 @@ public class Customer {
         return result;
     }
 
-    // Sums up all rental charges using the assigned Transaction Strategy
     private double getTotalCharge() {
         DiscountTransactionStrategy transaction = new Cart();
         transaction = new FiveDollarDiscount(transaction);
         return transaction.getPrice(this.rentals);
     }
 
-   //Implementation (b) - +20 FRP if transaction has >= 4 rentals
     private int getTotalFrequentRenterPoints() {
         Transaction basePoints = new Transaction(new Cart());
         TwentyExtraPointCoupon bonus = new TwentyExtraPointCoupon(basePoints);
