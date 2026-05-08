@@ -14,6 +14,7 @@ public class Customer {
         rentals.add(rental);
     }
 
+    // Returns the customer's name
     public String getName() {
         return name;
     }
@@ -56,19 +57,15 @@ public class Customer {
         return result;
     }
 
-    // Sums up all rental charges using the assigned Transaction Strategy
     private double getTotalCharge() {
         DiscountTransactionStrategy transaction = new Cart();
         transaction = new FiveDollarDiscount(transaction);
         return transaction.getPrice(this.rentals);
     }
 
-    // Sums up all frequent renter points using the assigned Transaction Point Strategy
     private int getTotalFrequentRenterPoints() {
-        int result = 0;
-        for (Rental rental : rentals) {
-            result += rental.getFRP();
-        }
-        return result;
+        Transaction basePoints = new Transaction(new Cart());
+        TwentyExtraPointCoupon bonus = new TwentyExtraPointCoupon(basePoints);
+        return bonus.getFRP(this.rentals);
     }
 }

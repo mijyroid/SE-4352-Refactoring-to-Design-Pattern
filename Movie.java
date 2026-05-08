@@ -4,19 +4,19 @@ public class Movie {
     public static final int NEW_RELEASE = 1;
     public static final int CHILDRENS = 2;
 
-    private String name; 
+    private String title;
     private int priceCode;
 
-    public Movie(String name, int priceCode) {
-        this.name = name;
+    public Movie(String title, int priceCode) {
+        this.title = title;
         this.priceCode = priceCode;
     }
 
-    public String getTitle() { 
-        return name; 
+    public String getTitle() {
+        return title;
     }
 
-    public int getPriceCode() { 
-        return priceCode; 
+    public int getPriceCode() {
+        return priceCode;
     }
 }
